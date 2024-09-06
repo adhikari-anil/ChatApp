@@ -3,10 +3,13 @@ import { useState, useEffect, useCallback } from "react";
 import { io } from "socket.io-client";
 import { chatStore } from "../state/store";
 
-const socket = io.connect("http://localhost:5000"); // anyone between them...
+
+const apiURL = import.meta.env.VITE_API_URL;
+
+const socket = io.connect(apiURL);
 
 function Chats() {
-  const [message, setMessage] = useState(""); // this is for the actual message from the user..
+  const [message, setMessage] = useState("");
   const user = localStorage.getItem("user");
 
   const { chats, setChats } = chatStore();
